@@ -419,6 +419,109 @@ for i in range(2, 10):
   print()
 ```
 
-### 
+### 함수
+ - 특정한 작업을 하나의 단위로 묶어놓은 것을 의미
+ - 불필요한 소스코드의 반복을 줄일 수 있음
 
+##### 내장함수: 파이썬이 기본적으로 제공하는 함수
+##### 사용자 정의 함수: 개발자가 직접 정의하여 사용할 수 있는 함수
 
+```
+#더하기 함수 예시
+def add(a,b):
+  return a+b
+  
+print(add(3,7))
+```
+#### global키워드
+ - 해당 함수에서는 지역변수를 만들지 않고 함수 바깥에 선언된 변수를 바로 참조
+```
+a = 0
+def func():
+  global a
+  a+=1
+
+for i in range(10):
+  func()
+  
+print(a)
+```
+#### 여러 개의 반환 값
+ - 파이썬에서 함수는 여러 개의 반환 값을 가질 수 있음
+```
+def operator(a, b):
+  add_var = a+b
+  subtract_var = a - b
+  multiply_var = a * b
+  divide_var = a / b
+  return add_var, subtract_var, multiply_var, divide_var
+a,b,c,d = operator(7,3)
+print(a,b,c,d)
+
+```
+#### 람다 표현식
+ - 함수를 간단하게 작성 가능
+ - 특정한 기능을 수행하는 함수를 한 줄에 작성할 수 있다는 점이 특징
+
+```
+#람다 표현식으로 구현한 add()메서드
+print((lambda a,b:a+b)(3,7))
+```
+```
+#내장 함수에서 자주 사용되는 람다 함수
+array = [('홍길동', 50), ('이순신', 32), ('아무개', 74)]
+
+def my_key(x):
+  return x[1]
+
+print(sorted(array, key=my_key))
+print(sorted(array, key=lambda x: x[1]))
+
+```
+***
+### 실전에서 유용한 표준 라이브러리
+ - 내장함수: 기본 입출력부터 정렬함수까지 기본적인 함수들을 제공
+ - itertools: 파이썬에서 반복되는 형태의 데이터를 처리하기 위한 유용한 기능 제공
+ - headq: 힙 자료구조 제공
+ - bisect: 이진 탐색 기능 제공
+ - collections: 덱, 카운터 등의 유용한 자료구조 포함
+ - math: 필수적인 수학적 기능 제공
+
+#### 자주 사용되는 내장 함수
+```
+#sum()
+result = sum([1, 2, 3, 4, 5])
+print(result)
+
+#min(), max()
+min_result = min(7, 3, 5, 2)
+max_result = max(7, 3, 5, 2)
+print(min_result, max_result)
+
+result = eval("(3+5)*7")
+print (result)
+```
+#### 순열과 조합
+ - 순열: 서로 다른 n개에서 서로 다른 r개를 선택하여 일렬로 나열
+ - 조합: 서로 다른 n개에서 순서에 상관 없이 서로 다른 r개를 선택
+
+#### Counter
+ - 등장 횟수를 세능 기능 제공
+ - 반복 가능한 객체가 주어졌을 때 내부의 원소가 몇번씩 등장했는지 알려줌
+
+#### 최대 공약수와 최고 공배수
+ - 최대 공약수를 구해야 할 때는 math라이브러리의 gcd()함수를 사용
+
+```
+import math
+
+# 최소 공배수(LCM)를 구하는 함수
+def lem(a, b):
+  return a * b // math.gcd(a, b)
+
+a=21
+b=14
+print(math,gcd(21, 14)) # 최대 공약수(GCD) 계산
+print(lcm(21, 14)) # 최소 공배수(LCM) 계산
+```
+a
