@@ -53,3 +53,66 @@ print(array)
  - 평균의 경우 O(NlogN)의 시간복잡도
  - 최악의 경우 O(N^2)의 시간복잡도를 가진다.
 
+```
+array = [7,5,9,0,3,1,6,2,4,8]
+def quick_sort(array,start,end):
+  if start>=end:
+    return
+  pivot = start
+  left = start+1
+  right = end
+  while left<=right:
+    while left <=end and array[left] <= array[pivot]:
+      left+=1
+    while right>start and array[right]>=array[pivot]:
+      right-=1
+    
+    if left>right:
+      array[right], array[pivot] = array[pivot], array[right]
+    else:
+      array[left], array[right] = array[right], array[left]
+      
+    quick_sort(array, start, right -1)
+    quick_sort(array, right+1, end)
+    
+ quick_sort(array, 0 , len(array)-1)
+    
+```
+파이썬의 장점을 살린 방식
+```
+array = [7,5,9,0,3,1,6,2,4,8]
+def quick_sort(array):
+  if len(array)<=1:
+    return array
+  pivot = array[0]
+  tatil = array[1:]
+  
+  left_side = [x for x in tail if x<=pivot]
+  right_side = [x for x in tail if x>pivot]
+  
+  return quick_sort(left_side)+[pivot]+quick_sort(right_side)
+  
+  
+```
+### 계수정렬
+ - 특정한 조건이 부합할 떄만 사용할 수 있지만 매우 빠르게 동작하는 정렬 알고리즘
+   * 데이터의 크기 범위가 제한되어 정수 형태로 표현할 수 있을 때 사용
+ - 데이터의 개수가 N, 데이터 중 최댓값이 K일 때 최악의 경우에도 수행시간 O(N+K)를 보장
+
+```
+array = [7,5,9,0,3,1,6,2,9,1,4,8,0,5,2]
+
+count = [0] * (max(array)+1)
+
+for i in range(len(array)):
+  count[array[i]]+=1
+  
+for i in range(len(count)):
+  for j in range(count[i]):
+    print(i, end=' ')
+```
+계수정렬의 복잡도 분석
+ - 시간복잡도와 공간복잡도 모두 O(N+K)
+ - 때에 따라서 심각한 비효율성을 초래할 수 있음
+ - 동일한 값을 가지는 데이터가 여러 개 등장할 때 효과적으로 사
+
